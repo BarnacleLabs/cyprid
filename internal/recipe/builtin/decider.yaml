@@ -1,0 +1,44 @@
+# decider (Mark Marosi): Qwen3.5 fine-tunes that read typed answers in one pass.
+# decider.serve is configured by environment variables and loads the model
+# before it starts listening, so /health means ready. MPS on Apple Silicon.
+# Weights are pinned to the exact revisions benchmarked for the README (repo@commit);
+# {weights_path} hands the backend that revision's local folder.
+id: decider
+description: decider, Qwen3.5 fine-tunes for one-pass typed decisions (Apache-2.0).
+homepage: https://github.com/Mapika/decider
+license: "Apache-2.0"
+base: "Qwen3.5 (Alibaba, China)"
+context:
+  tokens: 32768
+  note: "State tokens (DECIDER_MAX_STATE_TOKENS)"
+install:
+  python: "3.12"
+  packages:
+    - "decider-ai[serve,metal]==1.5.0"
+  prefetch:
+    - ["{python}", "-c", "import sys; from huggingface_hub import snapshot_download; r, _, v = sys.argv[1].partition('@'); print(snapshot_download(r, revision=v or None))", "{weights}"]
+launch:
+  cmd: ["{env}/bin/uvicorn", "decider.serve:app", "--host", "127.0.0.1", "--port", "{port}", "--log-level", "warning"]
+  env:
+    DECIDER_MODEL: "{weights_path}"
+  ready:
+    path: /health
+    timeout: 10m
+  idle_timeout: 30m
+models:
+  decider-0.8b:
+    description: decider 0.8B (Qwen3.5-0.8B)
+    weights: Mapika/decider-0.8b@a0a01d6f8135298f400a8c856b355793012ae971  # latest on 2026-09-27; not benchmarked
+    upstream_model: decider
+    mem_gb: 3
+  decider-2b:
+    description: decider 2B (Qwen3.5-2B)
+    weights: Mapika/decider-2b@533964dae8be954c5b5e19fa4948e48408094c1e
+    upstream_model: decider
+    aliases: [decider]
+    mem_gb: 6
+  decider-4b:
+    description: decider 4B (Qwen3.5-4B)
+    weights: Mapika/decider-4b@eb5fbdfc9448473ec25e399882912863afbdb70e
+    upstream_model: decider
+    mem_gb: 11

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" width="1280" height="400" role="img" aria-label="cyprid: one API for many decision models">
+  
+  <defs>
+    <linearGradient id="bglight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F5FBFD"/><stop offset="1" stop-color="#E3F3F7"/>
+    </linearGradient>
+    <linearGradient id="flowlight" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0D9488"/><stop offset="1" stop-color="#0284C7"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="400" rx="24" fill="url(#bglight)"/>
+  <circle cx="77" cy="344" r="5" fill="none" stroke="#0EA5E9" stroke-opacity=".28" stroke-width="1.5"/><circle cx="141" cy="372" r="3" fill="none" stroke="#0EA5E9" stroke-opacity=".28" stroke-width="1.5"/><circle cx="602" cy="48" r="4" fill="none" stroke="#0EA5E9" stroke-opacity=".28" stroke-width="1.5"/><circle cx="666" cy="80" r="2.5" fill="none" stroke="#0EA5E9" stroke-opacity=".28" stroke-width="1.5"/><circle cx="1190" cy="40" r="5" fill="none" stroke="#0EA5E9" stroke-opacity=".28" stroke-width="1.5"/><circle cx="1242" cy="88" r="3" fill="none" stroke="#0EA5E9" stroke-opacity=".28" stroke-width="1.5"/><circle cx="1152" cy="360" r="4" fill="none" stroke="#0EA5E9" stroke-opacity=".28" stroke-width="1.5"/><circle cx="742" cy="360" r="3" fill="none" stroke="#0EA5E9" stroke-opacity=".28" stroke-width="1.5"/><circle cx="448" cy="380" r="2.5" fill="none" stroke="#0EA5E9" stroke-opacity=".28" stroke-width="1.5"/>
+  
+  
+  <g transform="translate(64 72) scale(1.03125)">
+    <defs><linearGradient id="shelllightm" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5EEAD4"/><stop offset=".55" stop-color="#22D3EE"/><stop offset="1" stop-color="#0EA5E9"/>
+    </linearGradient></defs>
+    <rect x="1" y="1" width="126" height="126" rx="27" fill="#0B1B2B" stroke="#0B1B2B" stroke-width="2"/>
+    <g transform="translate(6 2) rotate(-10 64 64)">
+      <g fill="none" stroke="#7DD3FC" stroke-width="3.6" stroke-linecap="round">
+        <path d="M36 62 C 28 54, 22 46, 18 38"/><path d="M35 64 C 26 64, 19 64, 13 64"/><path d="M36 66 C 28 74, 22 82, 18 90"/>
+      </g>
+      <g fill="#E0F2FE"><circle cx="17" cy="36" r="5.5"/><circle cx="11" cy="64" r="5.5"/><circle cx="17" cy="92" r="5.5"/></g>
+      <path d="M34 64 C 44 44, 74 36, 96 42 C 110 46, 117 58, 113 71 C 109 83, 93 90, 71 88 C 53 86, 40 78, 34 64 Z" fill="url(#shelllightm)"/>
+      <path d="M45 55 C 62 43, 90 42, 107 52" fill="none" stroke="#0B1B2B" stroke-opacity=".3" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="50" cy="63" r="5.2" fill="#0B1B2B"/><circle cx="51.8" cy="61.3" r="1.7" fill="#E0F2FE"/>
+      <g fill="none" stroke="#7DD3FC" stroke-width="3" stroke-linecap="round">
+        <path d="M74 88 C 76 95, 80 99, 86 101"/><path d="M85 87 C 88 93, 92 96, 98 97"/><path d="M96 84 C 99 89, 103 91, 108 91"/>
+      </g>
+    </g>
+  </g>
+  <text x="220" y="164" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="96" font-weight="800"
+        letter-spacing="-3" fill="#0B2233">cyprid</text>
+  <text x="64" y="264" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="30" font-weight="650" fill="#0B2233">One API for many decision models</text>
+  <text x="64" y="302" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="21" fill="#557184">Jev-compatible · install, run and compare them on your Mac</text>
+  <path d="M900 200 L805 72" stroke="#A9CEDB" stroke-width="1.5" stroke-dasharray="3 5" fill="none"/><path d="M900 200 L900 62" stroke="#0D9488" stroke-width="2.5"  fill="none"/><path d="M900 200 L995 72" stroke="#A9CEDB" stroke-width="1.5" stroke-dasharray="3 5" fill="none"/><path d="M900 200 L805 328" stroke="#A9CEDB" stroke-width="1.5" stroke-dasharray="3 5" fill="none"/><path d="M900 200 L900 338" stroke="#A9CEDB" stroke-width="1.5" stroke-dasharray="3 5" fill="none"/><path d="M900 200 L995 328" stroke="#A9CEDB" stroke-width="1.5" stroke-dasharray="3 5" fill="none"/><rect x="786.7" y="58" width="36.6" height="28" rx="14" fill="#FFFFFF" stroke="#CFE3EA"/><text x="805" y="77" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="500" fill="#28475A">von</text><rect x="853.0" y="48" width="94.0" height="28" rx="14" fill="#0D9488" stroke="#0D9488"/><text x="900" y="67" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#FFFFFF">decider-4b</text><rect x="964.4" y="58" width="61.2" height="28" rx="14" fill="#FFFFFF" stroke="#CFE3EA"/><text x="995" y="77" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="500" fill="#28475A">kev-4b</text><rect x="782.6" y="314" width="44.8" height="28" rx="14" fill="#FFFFFF" stroke="#CFE3EA"/><text x="805" y="333" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="500" fill="#28475A">laya</text><rect x="865.3" y="324" width="69.4" height="28" rx="14" fill="#FFFFFF" stroke="#CFE3EA"/><text x="900" y="343" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="500" fill="#28475A">openjev</text><rect x="964.4" y="314" width="61.2" height="28" rx="14" fill="#FFFFFF" stroke="#CFE3EA"/><text x="995" y="333" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="500" fill="#28475A">cygnet</text>
+    <path d="M816 200 L840 200" stroke="url(#flowlight)" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <rect x="640" y="128" width="176" height="144" rx="14" fill="#FFFFFF" stroke="#CFE3EA"/>
+    <text x="656" y="154" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#557184">POST /v1/systemone</text>
+    <text x="656" y="182" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#0284C7">state</text>
+    <text x="656" y="202" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#0B2233">"I was charged</text>
+    <text x="656" y="220" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#0B2233"> twice. Help!"</text>
+    <text x="656" y="246" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#0284C7">urgent? team? mood?</text>
+    <circle cx="900" cy="200" r="62" fill="#0D9488" fill-opacity=".10"/>
+    <circle cx="900" cy="200" r="50" fill="#0B1B2B" stroke="url(#flowlight)" stroke-width="3"/>
+  <g transform="translate(860 160) scale(0.625)">
+    <defs><linearGradient id="shelllighth" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5EEAD4"/><stop offset=".55" stop-color="#22D3EE"/><stop offset="1" stop-color="#0EA5E9"/>
+    </linearGradient></defs>
+    
+    <g transform="translate(6 2) rotate(-10 64 64)">
+      <g fill="none" stroke="#7DD3FC" stroke-width="3.6" stroke-linecap="round">
+        <path d="M36 62 C 28 54, 22 46, 18 38"/><path d="M35 64 C 26 64, 19 64, 13 64"/><path d="M36 66 C 28 74, 22 82, 18 90"/>
+      </g>
+      <g fill="#E0F2FE"><circle cx="17" cy="36" r="5.5"/><circle cx="11" cy="64" r="5.5"/><circle cx="17" cy="92" r="5.5"/></g>
+      <path d="M34 64 C 44 44, 74 36, 96 42 C 110 46, 117 58, 113 71 C 109 83, 93 90, 71 88 C 53 86, 40 78, 34 64 Z" fill="url(#shelllighth)"/>
+      <path d="M45 55 C 62 43, 90 42, 107 52" fill="none" stroke="#0B1B2B" stroke-opacity=".3" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="50" cy="63" r="5.2" fill="#0B1B2B"/><circle cx="51.8" cy="61.3" r="1.7" fill="#E0F2FE"/>
+      <g fill="none" stroke="#7DD3FC" stroke-width="3" stroke-linecap="round">
+        <path d="M74 88 C 76 95, 80 99, 86 101"/><path d="M85 87 C 88 93, 92 96, 98 97"/><path d="M96 84 C 99 89, 103 91, 108 91"/>
+      </g>
+    </g>
+  </g>
+    <path d="M960 200 L1024 200" stroke="url(#flowlight)" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <rect x="1024" y="116" width="206" height="168" rx="14" fill="#FFFFFF" stroke="#CFE3EA"/>
+    <text x="1040" y="142" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#557184">answers</text>
+    <text x="1040" y="172" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#557184">urgent</text>
+    <text x="1214" y="172" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#0B2233">yes 69%</text>
+    <rect x="1040" y="181" width="174" height="7" rx="3.5" fill="#E1EEF3"/>
+    <rect x="1040" y="181" width="120" height="7" rx="3.5" fill="url(#flowlight)"/>
+    <text x="1040" y="212" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#557184">team</text>
+    <text x="1214" y="212" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#0B2233">billing 78%</text>
+    <rect x="1040" y="221" width="174" height="7" rx="3.5" fill="#E1EEF3"/>
+    <rect x="1040" y="221" width="136" height="7" rx="3.5" fill="url(#flowlight)"/>
+    <text x="1040" y="252" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#557184">mood</text>
+    <text x="1214" y="252" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#0B2233">annoyed 68%</text>
+    <rect x="1040" y="261" width="174" height="7" rx="3.5" fill="#E1EEF3"/>
+    <rect x="1040" y="261" width="118" height="7" rx="3.5" fill="url(#flowlight)"/>
+</svg>

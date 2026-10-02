@@ -1,0 +1,21 @@
+cyprid
+Copyright 2026 Barnacle Labs
+
+This product includes software developed by Barnacle Labs.
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Third-party code compiled into cyprid
+-------------------------------------
+
+gopkg.in/yaml.v3
+  Copyright 2011-2016 Canonical Ltd.
+  Licensed under the Apache License, Version 2.0 and the MIT License.
+
+Not included in cyprid
+----------------------
+
+cyprid does not include or redistribute any models, model weights, their
+software packages, Cygnet's shim or benchmark datasets. The user's own copy of
+cyprid downloads each of these when asked to install or run it, from its
+original source and under its own licence. The licence of every model cyprid
+can install is shown in its web page and by `cyprid info <model>`.

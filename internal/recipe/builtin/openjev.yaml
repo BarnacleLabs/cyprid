@@ -1,0 +1,37 @@
+# OpenJev (razorback16): DiffusionGemma 26B-A4B read as a diffusion canvas.
+# On a Mac it runs in-process on MLX with 4-bit weights (about 16GB).
+# Installed from git: the "openjev" package on PyPI is an unrelated project.
+# Weights are pinned to the exact revisions benchmarked for the README (repo@commit);
+# {weights_path} hands the backend that revision's local folder.
+id: openjev
+description: OpenJev, a Jev-compatible server on DiffusionGemma 26B-A4B via MLX (Apache-2.0).
+homepage: https://github.com/razorback16/openjev
+license: "Apache-2.0"
+base: "DiffusionGemma 26B-A4B (Google, USA)"
+context:
+  tokens: 32768
+  note: "OpenJev's cap on a Mac (OPENJEV_MLX_MAX_PROMPT, adjustable); the model supports 262,144"
+install:
+  python: "3.12"
+  packages:
+    - "openjev[mlx] @ git+https://github.com/razorback16/openjev@e4f72c49f3ba887dbd24dd9912ffa84db85fefd4"
+  prefetch:
+    - ["{python}", "-c", "import sys; from huggingface_hub import snapshot_download; r, _, v = sys.argv[1].partition('@'); print(snapshot_download(r, revision=v or None))", "{weights}"]
+launch:
+  cmd: ["{python}", "-m", "openjev"]
+  env:
+    OPENJEV_BACKEND: mlx
+    OPENJEV_MLX_MODEL: "{weights_path}"
+    OPENJEV_HOST: 127.0.0.1
+    OPENJEV_PORT: "{port}"
+    OPENJEV_LOG_LEVEL: warning
+  ready:
+    path: /health
+    timeout: 15m
+  idle_timeout: 30m
+models:
+  openjev:
+    description: OpenJev (DiffusionGemma 26B-A4B, 4-bit MLX)
+    weights: mlx-community/diffusiongemma-26B-A4B-it-4bit@a7a81407613811e8ba63af92ac0d852b809e191f
+    upstream_model: openjev-latest
+    mem_gb: 18

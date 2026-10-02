@@ -1,0 +1,57 @@
+# Kev (Jared Palmer): LoRA + pointer heads on Qwen, with its own Jev-compatible server.
+# On Apple Silicon kev.serve picks MPS and the MLX backend by itself.
+# Weights are pinned to the exact revisions benchmarked for the README (repo@commit).
+# Each Kev checkpoint records the exact revision of the Qwen base model it adapts,
+# so pinning the checkpoint pins the base too.
+id: kev
+description: Kev, an open reconstruction of a Jev-style decision model on Qwen bases.
+homepage: https://github.com/jaredpalmer/kev
+license: "Apache-2.0"
+base: "Qwen3.5 (Alibaba, China)"
+context:
+  tokens: 65536
+  note: "State tokens accepted when serving, plus 8,192 per question; trained on states up to 384 tokens, so accuracy drops on long documents"
+install:
+  python: "3.13"
+  packages:
+    - "kev[serve] @ git+https://github.com/jaredpalmer/kev@5920c5fe4ca8e0970ed4209ac2c9b8e18bea5109"
+  prefetch:
+    # Download the Kev checkpoint and the Qwen base model it adapts.
+    - ["{python}", "-c", "import sys; from kev.checkpoint import Checkpoint, resolve_run; ck = Checkpoint(sys.argv[1]); resolve_run(f'{ck.meta.base}@{ck.meta.base_revision or \"\"}')", "{weights}"]
+launch:
+  cmd: ["{python}", "-m", "kev.serve", "--run", "{weights_path}", "--port", "{port}"]
+  ready:
+    path: /v1/models
+    timeout: 15m
+  idle_timeout: 30m
+models:
+  kev-0.8b:
+    description: Kev 0.8B
+    weights: jaredpalmer/kev-0.8b@9a45d25eb2ab761841196625383fa1dff0e56c1e
+    # Kev's repo is a LoRA adapter; it also downloads its Qwen base model (per the model card).
+    repos: [jaredpalmer/kev-0.8b@9a45d25eb2ab761841196625383fa1dff0e56c1e, Qwen/Qwen3.5-0.8B-Base@dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68]
+    upstream_model: kev-latest
+    mem_gb: 4
+  kev-4b:
+    description: Kev 4B (recommended on a 32GB Mac)
+    weights: jaredpalmer/kev-4b@139fdd94f1b6a6ad80cc15e08fcb99cac885a101
+    # Kev's repo is a LoRA adapter; it also downloads its Qwen base model (per the model card).
+    repos: [jaredpalmer/kev-4b@139fdd94f1b6a6ad80cc15e08fcb99cac885a101, Qwen/Qwen3.5-4B-Base@1001bb4d826a52d1f399e183466143f4da7b741b]
+    upstream_model: kev-latest
+    aliases: [kev, kev-latest]
+    mem_gb: 12
+  kev-9b:
+    description: Kev 9B
+    weights: jaredpalmer/kev-9b@2629c06a5aeb0feb3b9783bafed17ed8f39ecf5c  # latest on 2026-09-27; not benchmarked
+    # Kev's repo is a LoRA adapter; it also downloads its Qwen base model (per the model card).
+    repos: [jaredpalmer/kev-9b@2629c06a5aeb0feb3b9783bafed17ed8f39ecf5c, Qwen/Qwen3.5-9B-Base@68c46c4b3498877f3ef123c856ecfde50c39f404]
+    upstream_model: kev-latest
+    mem_gb: 24
+  kev-27b:
+    description: Kev 27B (needs a lot of unified memory)
+    base: "Qwen3.8 (Alibaba, China)"
+    weights: jaredpalmer/kev-27b@01b81998019be550f0ae858727df49bac9511195  # latest on 2026-09-27; not benchmarked
+    # Kev's repo is a LoRA adapter; it also downloads its Qwen base model (per the model card).
+    repos: [jaredpalmer/kev-27b@01b81998019be550f0ae858727df49bac9511195, Qwen/Qwen3.8-27B@1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0]
+    upstream_model: kev-latest
+    mem_gb: 64

@@ -1,0 +1,39 @@
+# Laya (ConvAI Innovations): non-autoregressive encoder decision model.
+# laya-serve already speaks the Jev API and is configured entirely by env vars.
+# Its package downloads its own weights and offers no way to choose a revision, so
+# cyprid can't pin them. Models run offline after install, so the installed revision
+# (see `cyprid info`) stays put until you reinstall.
+id: laya
+description: Laya, a multilingual non-autoregressive System One model (ModernBERT / mmBERT encoders).
+homepage: https://huggingface.co/convaiinnovations/laya
+license: "Apache-2.0"
+base: "ModernBERT-large (Answer.AI & LightOn, USA/France); mmBERT-base (Johns Hopkins University, USA) for its multilingual checkpoint"
+context:
+  tokens: 512
+  note: "English checkpoint; 1,024 for its multilingual and typed-decisions checkpoints"
+install:
+  python: "3.12"
+  packages:
+    - "laya[serve]==0.3.20"
+  prefetch:
+    # Building the router downloads every Laya checkpoint into the Hugging Face cache.
+    - ["{python}", "-c", "from laya import Router; Router(preload=True)"]
+launch:
+  cmd: ["{env}/bin/laya-serve"]
+  env:
+    LAYA_HOST: 127.0.0.1
+    LAYA_PORT: "{port}"
+    LAYA_PRELOAD: "1"
+    LAYA_LOG_LEVEL: warning
+  ready:
+    path: /health
+    timeout: 5m
+  idle_timeout: 30m
+  mem_gb: 4
+models:
+  laya:
+    description: Laya, auto-routed across its English, multilingual and typed-decisions checkpoints
+    # The bundle id tells laya-serve to let its router pick the checkpoint per request.
+    upstream_model: convaiinnovations/laya
+    # laya downloads its checkpoints itself; all three are subfolders of this repo.
+    repos: [convaiinnovations/laya]

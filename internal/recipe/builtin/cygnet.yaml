@@ -1,0 +1,38 @@
+# Cygnet (blockbrain): frozen Gemma-4-12B-it read as a decision model. Cygnet's own
+# shim (pinned, sha256-checked) supplies the prompt, option letters, per-letter
+# readout and calibration temperature; cyprid's worker replaces only its
+# vLLM call with an in-process MLX forward pass. Weights are pinned to the
+# revisions benchmarked here.
+id: cygnet
+description: Cygnet, frozen Gemma-4-12B-it read through Cygnet's option-letter shim, on MLX.
+homepage: https://github.com/blockbrain-ai/cygnet-recipe
+license: "MIT (shim); Gemma-4 weights Apache-2.0 + Gemma Prohibited Use Policy"
+base: "Gemma 4 12B (Google, USA)"
+context:
+  tokens: 16384
+  note: "Cygnet's documented limit (the worker's --max-context)"
+install:
+  python: "3.12"
+  packages:
+    - "mlx-vlm==0.7.3"
+  shim: cygnet
+  prefetch:
+    - ["{python}", "{shim}", "--fetch-upstream"]
+    - ["{python}", "-c", "import sys; from huggingface_hub import snapshot_download; r, _, v = sys.argv[1].partition('@'); print(snapshot_download(r, revision=v or None))", "{weights}"]
+launch:
+  cmd: ["{python}", "{shim}", "--model", "{weights}", "--name", "{model}", "--port", "{port}"]
+  env:
+    SHIM_TEMPERATURE: "3.4"   # Cygnet's documented calibration temperature
+  ready:
+    path: /health
+    timeout: 10m
+  idle_timeout: 30m
+models:
+  cygnet:
+    description: Cygnet on Gemma-4-12B-it bf16 (the precision Cygnet was measured at)
+    weights: mlx-community/gemma-4-12B-it-bf16@afb7b215e9fe3b3eaef462b27d5c9d9b1ba0565b
+    mem_gb: 26
+  cygnet-8bit:
+    description: Cygnet on Gemma-4-12B-it 8-bit (half the memory; measure before relying on it)
+    weights: mlx-community/gemma-4-12B-it-8bit@200bb6db075e137a4deb08838865ac4ddb86292e
+    mem_gb: 15

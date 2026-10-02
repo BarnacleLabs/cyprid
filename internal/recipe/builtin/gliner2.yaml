@@ -1,0 +1,36 @@
+# GLiNER2 classification models. These don't speak the Jev API, so a small
+# embedded shim translates: choice is native, noul and score are emulated as
+# classification over yes/no or over the score levels.
+# Weights are pinned to the exact revisions benchmarked for the README (repo@commit);
+# {weights_path} hands the backend that revision's local folder.
+id: gliner2
+description: GLiNER2 classification models behind a Jev-compatible shim.
+homepage: https://github.com/fastino-ai/GLiNER2
+license: "Apache-2.0"
+base: "DeBERTa-v3-large encoder (Microsoft, USA)"
+context:
+  tokens: 512
+  note: "Not enforced: its DeBERTa-v3 encoder was pretrained on 512-token sequences, so longer inputs are accepted but untested"
+install:
+  python: "3.12"
+  packages:
+    - "gliner2[local]==2.0.0"
+  shim: gliner
+  prefetch:
+    - ["{python}", "-c", "import sys; from huggingface_hub import snapshot_download; r, _, v = sys.argv[1].partition('@'); print(snapshot_download(r, revision=v or None))", "{weights}"]
+    - ["{python}", "{shim}", "--repo", "{weights_path}", "--prefetch"]
+launch:
+  cmd: ["{python}", "{shim}", "--repo", "{weights_path}", "--name", "{model}", "--port", "{port}"]
+  ready:
+    path: /health
+    timeout: 5m
+  idle_timeout: 30m
+  mem_gb: 2
+capabilities:
+  noul: emulated
+  score: emulated
+models:
+  gliner2.5-decide:
+    description: Fastino GLiNER2.5-Decide, 340M-parameter decision classifier
+    weights: fastino/GLiNER2.5-Decide@7ee5da4c2415e32259bcdc0b1a7367c32ce8d6f6
+    aliases: [gliner-decide]

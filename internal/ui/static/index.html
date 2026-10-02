@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cyprid</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <img class="logo" src="favicon.svg" alt="" aria-hidden="true">
+    <span class="name">cyprid</span>
+    <span class="version" id="version"></span>
+    <span class="addr" id="addr"></span>
+  </div>
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="models" aria-selected="true">Models</button>
+    <button role="tab" data-tab="playground">Playground</button>
+    <button role="tab" data-tab="recipes">Recipes</button>
+    <button role="tab" data-tab="bench">Benchmarks</button>
+  </nav>
+  <button class="net-pill" id="net-pill" title="Network access">
+    <span class="dot"></span><span id="net-pill-text">Local only</span>
+  </button>
+  <div class="mem" id="mem" title="Estimated memory of running models against the budget">
+    <div class="mem-label"><span>Memory</span><span id="mem-text">–</span></div>
+    <div class="mem-bar"><div id="mem-fill"></div></div>
+  </div>
+</header>
+
+<div id="banner" class="banner" hidden></div>
+
+<main>
+  <!-- Models -->
+  <section id="tab-models" class="tab-panel">
+    <div class="panel-head">
+      <h1>Models</h1>
+      <p class="muted">Install is explicit; installed models start on their first request, or with Start. Idle models stop on their own.</p>
+      <p class="muted small where">cyprid's data: <code id="data-dir">~/.cyprid</code>
+        <button class="linkish" data-reveal="home">Show in Finder</button> ·
+        downloaded weights: <code>~/.cache/huggingface</code>
+        <button class="linkish" data-reveal="weights">Show in Finder</button></p>
+    </div>
+    <div class="table-wrap">
+      <table class="models">
+        <thead><tr>
+          <th>Model</th><th>Question types</th><th class="num" title="Longest input accepted, in tokens">Context</th><th>Installed</th><th>State</th><th class="num">Memory</th><th class="actions-col"></th>
+        </tr></thead>
+        <tbody id="models-body"></tbody>
+      </table>
+    </div>
+    <div id="drawer" class="drawer" hidden>
+      <div class="drawer-head">
+        <div>
+          <h2 id="drawer-title"></h2>
+          <div class="muted small" id="drawer-sub"></div>
+        </div>
+        <div class="drawer-tabs">
+          <button data-view="logs" class="seg" aria-pressed="true">Worker log</button>
+          <button data-view="job" class="seg" aria-pressed="false">Install output</button>
+        </div>
+        <button class="btn small" id="drawer-finder" title="Show this model's log file in Finder">Show log file</button>
+        <button class="icon-btn" id="drawer-close" aria-label="Close">×</button>
+      </div>
+      <pre id="drawer-log" class="log"></pre>
+    </div>
+  </section>
+
+  <!-- Playground -->
+  <section id="tab-playground" class="tab-panel" hidden>
+    <div class="panel-head">
+      <h1>Playground</h1>
+      <p class="muted">Send one request to several models and compare their answers.</p>
+    </div>
+    <div class="play">
+      <div class="play-input card">
+        <label class="field-label">Models</label>
+        <div id="play-models" class="chips"></div>
+
+        <div class="row-between">
+          <label class="field-label" for="play-state">State</label>
+          <select id="play-preset" aria-label="Example"></select>
+        </div>
+        <textarea id="play-state" rows="5" spellcheck="false"></textarea>
+
+        <label class="field-label" for="play-questions">Questions (JSON)</label>
+        <textarea id="play-questions" rows="14" spellcheck="false" class="mono"></textarea>
+
+        <div class="row-between">
+          <label class="check"><input type="checkbox" id="play-strict"> Reject emulated question types</label>
+          <button class="btn primary" id="play-send">Send</button>
+        </div>
+        <div id="play-error" class="error-text" hidden></div>
+      </div>
+      <div id="play-results" class="play-results"></div>
+    </div>
+  </section>
+
+  <!-- Recipes -->
+  <section id="tab-recipes" class="tab-panel" hidden>
+    <div class="panel-head">
+      <h1>Recipes</h1>
+      <p class="muted">How each backend is installed and launched. Saving writes an override to <code id="recipes-dir"></code>; it applies the next time a model starts.</p>
+    </div>
+    <div class="recipes">
+      <div class="recipe-list card">
+        <ul id="recipe-list"></ul>
+        <button class="btn" id="recipe-new">New recipe</button>
+      </div>
+      <div class="recipe-editor card" id="recipe-editor">
+        <div class="empty">Select a recipe.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benchmarks -->
+  <section id="tab-bench" class="tab-panel" hidden>
+    <div class="panel-head">
+      <h1>Benchmarks</h1>
+      <p class="muted">Results of <code>cyprid bench</code>. Headline numbers use each suite's clean records.
+        <button class="linkish" data-reveal="bench">Show all results in Finder</button></p>
+    </div>
+    <div class="bench">
+      <div class="card bench-list"><ul id="bench-list"></ul></div>
+      <div class="bench-detail" id="bench-detail"><div class="card empty">No runs yet. Run <code>cyprid bench</code> with the server up.</div></div>
+    </div>
+  </section>
+</main>
+
+<dialog id="net-dialog" class="dialog">
+  <div class="dialog-head">
+    <h2>Network access</h2>
+    <button class="icon-btn" id="net-close" aria-label="Close">×</button>
+  </div>
+  <label class="switch-row">
+    <span>
+      <strong>Listen on the network</strong>
+      <span class="muted small">Let other machines use the models. Switch it off at any time; requests already running finish.</span>
+    </span>
+    <input type="checkbox" id="net-toggle" class="switch">
+  </label>
+  <div id="net-error" class="notice bad" hidden></div>
+  <div id="net-details">
+    <label class="field-label">Reachable at</label>
+    <ul id="net-urls" class="copy-list"></ul>
+    <label class="field-label">API key</label>
+    <p class="muted small">Other machines must send <code>Authorization: Bearer &lt;key&gt;</code>. With the TypeSafe SDKs, use it as the API key and set the base URL above. This Mac never needs it.</p>
+    <div class="key-row">
+      <code id="net-key" class="key">••••••••</code>
+      <button class="btn small" id="net-show">Show</button>
+      <button class="btn small" id="net-copy">Copy</button>
+      <button class="btn small danger" id="net-rotate">New key</button>
+    </div>
+    <label class="field-label">Try it from another machine</label>
+    <pre id="net-example" class="example"></pre>
+  </div>
+  <p class="muted small">This page and the management API stay available on this Mac only, even with network access on.</p>
+</dialog>
+
+<dialog id="rm-dialog" class="dialog">
+  <div class="dialog-head">
+    <h2 id="rm-title"></h2>
+    <button class="icon-btn" id="rm-close" aria-label="Close">×</button>
+  </div>
+  <p id="rm-intro" class="muted small"></p>
+  <label class="switch-row" id="rm-weights-row">
+    <span>
+      <strong id="rm-weights-label">Also delete downloaded weights</strong>
+      <span class="muted small">Removes them from the Hugging Face cache. Reinstalling downloads them again.</span>
+    </span>
+    <input type="checkbox" id="rm-weights" class="switch">
+  </label>
+  <ul id="rm-repos" class="copy-list"></ul>
+  <div class="dialog-actions">
+    <button class="btn" id="rm-cancel">Cancel</button>
+    <button class="btn primary danger-fill" id="rm-confirm"></button>
+  </div>
+</dialog>
+
+<dialog id="cal-dialog" class="dialog">
+  <div class="dialog-head">
+    <h2 id="cal-title"></h2>
+    <button class="icon-btn" id="cal-close" aria-label="Close">×</button>
+  </div>
+  <p class="muted small">Opt-in temperature scaling, applied by cyprid to this model's answers. It never
+    changes which answer is chosen, so accuracy is unchanged; a temperature above 1 makes over-confident models
+    less extreme. Answers carry <code>x_calibrated</code> and the original numbers in <code>x_raw</code>; a request
+    can send <code>"x_calibrate": false</code> to get raw answers.</p>
+  <p id="cal-current" class="small"></p>
+  <label class="field-label" for="cal-temp">Temperature</label>
+  <div class="key-row">
+    <input type="text" id="cal-temp" inputmode="decimal" placeholder="e.g. 2.2" style="max-width: 140px">
+    <span class="muted small">1 = no change · above 1 = less confident</span>
+  </div>
+  <label class="field-label">Fitted from your benchmark runs</label>
+  <ul id="cal-suggestions" class="copy-list"></ul>
+  <p class="muted small">Each is fitted and scored on the same run, so it flatters a little. A temperature that
+    helps on runs from different suites is the one to trust.</p>
+  <div id="cal-error" class="notice bad" hidden></div>
+  <div class="dialog-actions">
+    <button class="btn" id="cal-reset" hidden>Use the recipe's</button>
+    <button class="btn" id="cal-off">Turn off</button>
+    <button class="btn primary" id="cal-save">Turn on</button>
+  </div>
+</dialog>
+
+<div id="signin" class="signin" hidden>
+  <div class="card signin-card">
+    <img src="favicon.svg" alt="" width="48" height="48">
+    <h2>Sign in to cyprid</h2>
+    <p>This page can install and run software on this Mac, so it only opens for the
+      account running cyprid. In Terminal, run:</p>
+    <pre>cyprid ui</pre>
+    <p class="muted small">It opens this page signed in. You can also use the one-time link
+      <code>cyprid serve</code> printed when it started.</p>
+  </div>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+<script src="app.js" type="module"></script>
+</body>
+</html>

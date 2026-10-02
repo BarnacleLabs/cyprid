@@ -1,0 +1,29 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    # cyprid supports Apple Silicon Macs only; macos-latest runs on one.
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+      - name: Check formatting
+        run: |
+          if [ -n "$(gofmt -l .)" ]; then
+            gofmt -l .
+            echo "These files need formatting; run: gofmt -w ."
+            exit 1
+          fi
+      - run: go vet ./...
+      - run: go test ./...
+      - run: go build -o bin/cyprid ./cmd/cyprid && ./bin/cyprid version

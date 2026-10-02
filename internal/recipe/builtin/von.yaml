@@ -1,0 +1,35 @@
+# Von (wfzyx): a 395M ModernBERT-large encoder with order-invariant option scoring.
+# Its /health answers before the model loads (the model loads on first use), so
+# readiness is a real decision request.
+# Its package downloads its own weights and offers no way to choose a revision, so
+# cyprid can't pin them. Models run offline after install, so the installed revision
+# (see `cyprid info`) stays put until you reinstall.
+id: von
+description: Von, a non-autoregressive ModernBERT encoder decision model (Apache-2.0).
+homepage: https://github.com/wfzyx/von
+license: "Apache-2.0"
+base: "ModernBERT-large (Answer.AI & LightOn, USA/France)"
+context:
+  tokens: 8192
+  note: "ModernBERT-large's maximum sequence length"
+install:
+  python: "3.12"
+  packages:
+    - "von-sdk==1.2.3"
+  prefetch:
+    # Loads Von in-process once, downloading its head and the ModernBERT encoder.
+    - ["{python}", "-c", "import von; print('loaded; P =', von.judge('The sky is blue.', 'Is the sky blue?'))"]
+launch:
+  cmd: ["{env}/bin/von", "serve", "--host", "127.0.0.1", "--port", "{port}"]
+  ready:
+    path: /v1/systemone
+    body: '{"model": "von-latest", "state": "warm up", "questions": {"q": {"type": "noul", "instructions": "Is this a test?"}}}'
+    timeout: 5m
+  idle_timeout: 30m
+  mem_gb: 3
+models:
+  von:
+    description: Von 1.2 (ModernBERT-large, 395M)
+    # von-sdk downloads its weights itself, from this repo's main branch.
+    repos: [wfzyx/von]
+    upstream_model: von-latest

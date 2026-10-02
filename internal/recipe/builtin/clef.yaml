@@ -1,0 +1,45 @@
+# Clef (Cloudflare): Qwen fine-tunes with a joint schema head that scores every
+# option of every question in one forward pass. Clef's weights folder ships its
+# own Jev-compatible systemone(); cyprid's worker loads it onto the Mac's GPU
+# (PyTorch MPS, bf16) and serves it. The packages are the versions Cloudflare
+# tested with; weights are pinned to the latest revisions on 2026-10-02.
+id: clef
+description: Cloudflare's Clef decision models, run locally with PyTorch on the Mac's GPU.
+homepage: https://blog.cloudflare.com/clef-decision-models/
+license: "Apache-2.0"
+base: "Qwen3.5 / Qwen3.8 (Alibaba, China)"
+context:
+  tokens: 16384
+  note: "The served limit (Clef's default max_length, questions included); longer states are cut to fit. The models were trained for 64k; pass --max-length in extra_args to raise it, at a cost in memory"
+install:
+  python: "3.12"
+  packages:
+    - "torch==2.11.0"
+    - "torchvision==0.26.0"
+    - "transformers==5.10.2"
+    - "accelerate==1.15.0"
+    - "pillow==12.3.0"
+  shim: clef
+  prefetch:
+    - ["{python}", "-c", "import sys; from huggingface_hub import snapshot_download; r, _, v = sys.argv[1].partition('@'); print(snapshot_download(r, revision=v or None))", "{weights}"]
+launch:
+  cmd: ["{python}", "{shim}", "--path", "{weights_path}", "--name", "{model}", "--port", "{port}"]
+  env:
+    PYTORCH_ENABLE_MPS_FALLBACK: "1"   # run any operation MPS lacks on the CPU instead of failing
+  ready:
+    path: /health
+    timeout: 15m
+  idle_timeout: 30m
+models:
+  clef-flash:
+    description: Clef-flash, 9B, Cloudflare's fast variant (about 19GB in bf16; needs a 48GB Mac to run comfortably)
+    homepage: https://huggingface.co/Cloudflare/clef-flash
+    base: "Qwen3.5-9B (Alibaba, China)"
+    weights: Cloudflare/clef-flash@17f0b0ad64efb65d273590632833508766b2aae6  # benchmarked 2026-10-02
+    mem_gb: 22
+  clef:
+    description: Clef, 27B, Cloudflare's most accurate variant (about 55GB in bf16; needs a 96GB Mac)
+    homepage: https://huggingface.co/Cloudflare/clef
+    base: "Qwen3.8-27B (Alibaba, China)"
+    weights: Cloudflare/clef@2f3de3dd85f379784083b0814d997ab627200f0c  # not benchmarked
+    mem_gb: 60

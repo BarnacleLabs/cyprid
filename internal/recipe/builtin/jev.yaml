@@ -1,0 +1,17 @@
+# TypeSafe's hosted Jev: the original System One model.
+id: jev
+description: TypeSafe's hosted Jev model. Needs TYPESAFE_API_KEY, or the client's own Authorization header.
+homepage: https://docs.typesafe.ai
+license: "Proprietary (hosted API)"
+base: "an undisclosed model (TypeSafe, USA)"
+context:
+  tokens: 65536
+  note: "64K per request; 32K for the state plus the longest question (TypeSafe's docs)"
+remote:
+  url: https://api.typesafe.ai
+  api_key_env: TYPESAFE_API_KEY
+models:
+  jev:
+    description: Jev (latest), hosted by TypeSafe
+    upstream_model: jev-latest
+    aliases: [jev-latest]

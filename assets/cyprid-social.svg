@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640">
+  
+  <defs>
+    <linearGradient id="bgs" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07131F"/><stop offset="1" stop-color="#0C2536"/>
+    </linearGradient>
+    <linearGradient id="flows" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2DD4BF"/><stop offset="1" stop-color="#38BDF8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="640" fill="url(#bgs)"/>
+  <circle cx="77" cy="550" r="5" fill="none" stroke="#7DD3FC" stroke-opacity=".28" stroke-width="1.5"/><circle cx="141" cy="595" r="3" fill="none" stroke="#7DD3FC" stroke-opacity=".28" stroke-width="1.5"/><circle cx="602" cy="77" r="4" fill="none" stroke="#7DD3FC" stroke-opacity=".28" stroke-width="1.5"/><circle cx="666" cy="128" r="2.5" fill="none" stroke="#7DD3FC" stroke-opacity=".28" stroke-width="1.5"/><circle cx="1190" cy="64" r="5" fill="none" stroke="#7DD3FC" stroke-opacity=".28" stroke-width="1.5"/><circle cx="1242" cy="141" r="3" fill="none" stroke="#7DD3FC" stroke-opacity=".28" stroke-width="1.5"/><circle cx="1152" cy="576" r="4" fill="none" stroke="#7DD3FC" stroke-opacity=".28" stroke-width="1.5"/><circle cx="742" cy="576" r="3" fill="none" stroke="#7DD3FC" stroke-opacity=".28" stroke-width="1.5"/><circle cx="448" cy="608" r="2.5" fill="none" stroke="#7DD3FC" stroke-opacity=".28" stroke-width="1.5"/>
+  
+  
+  <g transform="translate(64 150) scale(1.03125)">
+    <defs><linearGradient id="shellsm" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5EEAD4"/><stop offset=".55" stop-color="#22D3EE"/><stop offset="1" stop-color="#0EA5E9"/>
+    </linearGradient></defs>
+    <rect x="1" y="1" width="126" height="126" rx="27" fill="#0B1B2B" stroke="#24455E" stroke-width="2"/>
+    <g transform="translate(6 2) rotate(-10 64 64)">
+      <g fill="none" stroke="#7DD3FC" stroke-width="3.6" stroke-linecap="round">
+        <path d="M36 62 C 28 54, 22 46, 18 38"/><path d="M35 64 C 26 64, 19 64, 13 64"/><path d="M36 66 C 28 74, 22 82, 18 90"/>
+      </g>
+      <g fill="#E0F2FE"><circle cx="17" cy="36" r="5.5"/><circle cx="11" cy="64" r="5.5"/><circle cx="17" cy="92" r="5.5"/></g>
+      <path d="M34 64 C 44 44, 74 36, 96 42 C 110 46, 117 58, 113 71 C 109 83, 93 90, 71 88 C 53 86, 40 78, 34 64 Z" fill="url(#shellsm)"/>
+      <path d="M45 55 C 62 43, 90 42, 107 52" fill="none" stroke="#0B1B2B" stroke-opacity=".3" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="50" cy="63" r="5.2" fill="#0B1B2B"/><circle cx="51.8" cy="61.3" r="1.7" fill="#E0F2FE"/>
+      <g fill="none" stroke="#7DD3FC" stroke-width="3" stroke-linecap="round">
+        <path d="M74 88 C 76 95, 80 99, 86 101"/><path d="M85 87 C 88 93, 92 96, 98 97"/><path d="M96 84 C 99 89, 103 91, 108 91"/>
+      </g>
+    </g>
+  </g>
+  <text x="220" y="242" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="96" font-weight="800"
+        letter-spacing="-3" fill="#E6F2F7">cyprid</text>
+  <text x="64" y="342" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="30" font-weight="650" fill="#E6F2F7">One API for many decision models</text>
+  <text x="64" y="380" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="21" fill="#86A0B3">Jev-compatible · install, run and compare them on your Mac</text>
+  <path d="M900 320 L805 192" stroke="#24506B" stroke-width="1.5" stroke-dasharray="3 5" fill="none"/><path d="M900 320 L900 182" stroke="#2DD4BF" stroke-width="2.5"  fill="none"/><path d="M900 320 L995 192" stroke="#24506B" stroke-width="1.5" stroke-dasharray="3 5" fill="none"/><path d="M900 320 L805 448" stroke="#24506B" stroke-width="1.5" stroke-dasharray="3 5" fill="none"/><path d="M900 320 L900 458" stroke="#24506B" stroke-width="1.5" stroke-dasharray="3 5" fill="none"/><path d="M900 320 L995 448" stroke="#24506B" stroke-width="1.5" stroke-dasharray="3 5" fill="none"/><rect x="786.7" y="178" width="36.6" height="28" rx="14" fill="#102A3E" stroke="#1D3A52"/><text x="805" y="197" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="500" fill="#B9D3E1">von</text><rect x="853.0" y="168" width="94.0" height="28" rx="14" fill="#2DD4BF" stroke="#2DD4BF"/><text x="900" y="187" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#FFFFFF">decider-4b</text><rect x="964.4" y="178" width="61.2" height="28" rx="14" fill="#102A3E" stroke="#1D3A52"/><text x="995" y="197" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="500" fill="#B9D3E1">kev-4b</text><rect x="782.6" y="434" width="44.8" height="28" rx="14" fill="#102A3E" stroke="#1D3A52"/><text x="805" y="453" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="500" fill="#B9D3E1">laya</text><rect x="865.3" y="444" width="69.4" height="28" rx="14" fill="#102A3E" stroke="#1D3A52"/><text x="900" y="463" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="500" fill="#B9D3E1">openjev</text><rect x="964.4" y="434" width="61.2" height="28" rx="14" fill="#102A3E" stroke="#1D3A52"/><text x="995" y="453" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="500" fill="#B9D3E1">cygnet</text>
+    <path d="M816 320 L840 320" stroke="url(#flows)" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <rect x="640" y="248" width="176" height="144" rx="14" fill="#0F2436" stroke="#1D3A52"/>
+    <text x="656" y="274" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#86A0B3">POST /v1/systemone</text>
+    <text x="656" y="302" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#38BDF8">state</text>
+    <text x="656" y="322" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#E6F2F7">"I was charged</text>
+    <text x="656" y="340" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#E6F2F7"> twice. Help!"</text>
+    <text x="656" y="366" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#38BDF8">urgent? team? mood?</text>
+    <circle cx="900" cy="320" r="62" fill="#2DD4BF" fill-opacity=".10"/>
+    <circle cx="900" cy="320" r="50" fill="#0B1B2B" stroke="url(#flows)" stroke-width="3"/>
+  <g transform="translate(860 280) scale(0.625)">
+    <defs><linearGradient id="shellsh" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5EEAD4"/><stop offset=".55" stop-color="#22D3EE"/><stop offset="1" stop-color="#0EA5E9"/>
+    </linearGradient></defs>
+    
+    <g transform="translate(6 2) rotate(-10 64 64)">
+      <g fill="none" stroke="#7DD3FC" stroke-width="3.6" stroke-linecap="round">
+        <path d="M36 62 C 28 54, 22 46, 18 38"/><path d="M35 64 C 26 64, 19 64, 13 64"/><path d="M36 66 C 28 74, 22 82, 18 90"/>
+      </g>
+      <g fill="#E0F2FE"><circle cx="17" cy="36" r="5.5"/><circle cx="11" cy="64" r="5.5"/><circle cx="17" cy="92" r="5.5"/></g>
+      <path d="M34 64 C 44 44, 74 36, 96 42 C 110 46, 117 58, 113 71 C 109 83, 93 90, 71 88 C 53 86, 40 78, 34 64 Z" fill="url(#shellsh)"/>
+      <path d="M45 55 C 62 43, 90 42, 107 52" fill="none" stroke="#0B1B2B" stroke-opacity=".3" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="50" cy="63" r="5.2" fill="#0B1B2B"/><circle cx="51.8" cy="61.3" r="1.7" fill="#E0F2FE"/>
+      <g fill="none" stroke="#7DD3FC" stroke-width="3" stroke-linecap="round">
+        <path d="M74 88 C 76 95, 80 99, 86 101"/><path d="M85 87 C 88 93, 92 96, 98 97"/><path d="M96 84 C 99 89, 103 91, 108 91"/>
+      </g>
+    </g>
+  </g>
+    <path d="M960 320 L1024 320" stroke="url(#flows)" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <rect x="1024" y="236" width="206" height="168" rx="14" fill="#0F2436" stroke="#1D3A52"/>
+    <text x="1040" y="262" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#86A0B3">answers</text>
+    <text x="1040" y="292" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#86A0B3">urgent</text>
+    <text x="1214" y="292" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#E6F2F7">yes 69%</text>
+    <rect x="1040" y="301" width="174" height="7" rx="3.5" fill="#1A3549"/>
+    <rect x="1040" y="301" width="120" height="7" rx="3.5" fill="url(#flows)"/>
+    <text x="1040" y="332" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#86A0B3">team</text>
+    <text x="1214" y="332" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#E6F2F7">billing 78%</text>
+    <rect x="1040" y="341" width="174" height="7" rx="3.5" fill="#1A3549"/>
+    <rect x="1040" y="341" width="136" height="7" rx="3.5" fill="url(#flows)"/>
+    <text x="1040" y="372" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#86A0B3">mood</text>
+    <text x="1214" y="372" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#E6F2F7">annoyed 68%</text>
+    <rect x="1040" y="381" width="174" height="7" rx="3.5" fill="#1A3549"/>
+    <rect x="1040" y="381" width="118" height="7" rx="3.5" fill="url(#flows)"/>
+  <text x="64" y="578" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="20" fill="#86A0B3">Open source · runs locally on Apple Silicon Macs · von, decider, kev, laya, openjev, cygnet and more</text>
+</svg>

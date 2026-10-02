@@ -1,0 +1,38 @@
+# jevmlx (bnsd55): Jev-style decisions from any MLX instruct model, scoring the
+# allowed options from the logits in one prefill. Add models by listing any
+# mlx-community repo id. Its responses need normalising (score probabilities
+# are keyed by level text, only the top 5 options are reported), which the
+# gateway does and reports in X-Cyprid-Normalised.
+# Weights are pinned to the exact revisions benchmarked for the README (repo@commit);
+# {weights_path} hands the backend that revision's local folder.
+id: jevmlx
+description: jevmlx, Jev-style decisions from any MLX instruct model (MIT).
+homepage: https://github.com/bnsd55/jevmlx
+license: "MIT"
+base: "Qwen2.5 (Alibaba, China), as configured; any MLX model can be used"
+context:
+  tokens: 8192
+  note: "jevmlx's default prompt limit (--max-prompt-tokens)"
+install:
+  python: "3.12"
+  packages:
+    - "jevmlx @ git+https://github.com/bnsd55/jevmlx@7e0d746081b88412ccd7d84a5ffdcf9d61b36904"
+    - "huggingface_hub"
+  prefetch:
+    - ["{python}", "-c", "import sys; from huggingface_hub import snapshot_download; r, _, v = sys.argv[1].partition('@'); print(snapshot_download(r, revision=v or None))", "{weights}"]
+launch:
+  cmd: ["{env}/bin/jevmlx", "serve", "--model", "{weights_path}", "--host", "127.0.0.1", "--port", "{port}"]
+  ready:
+    path: /ready
+    timeout: 10m
+  idle_timeout: 30m
+models:
+  jevmlx-qwen2.5-7b:
+    description: jevmlx on Qwen2.5-7B-Instruct (4-bit), its default
+    weights: mlx-community/Qwen2.5-7B-Instruct-4bit@c26a38f6a37d0a51b4e9a1eb3026530fa35d9fed
+    aliases: [jevmlx]
+    mem_gb: 7
+  jevmlx-qwen2.5-3b:
+    description: jevmlx on Qwen2.5-3B-Instruct (4-bit), its fast option
+    weights: mlx-community/Qwen2.5-3B-Instruct-4bit@4f83f8f146fdf28b512a06562b671d7af4fab457  # latest on 2026-09-27; not benchmarked
+    mem_gb: 4
